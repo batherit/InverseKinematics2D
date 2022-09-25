@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\App">
+      <UniqueIdentifier>{c0b57618-2f75-4951-8d62-bcae4f9e1792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine">
+      <UniqueIdentifier>{9b274e75-4cb4-4333-9c44-5c7a1091dee1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Common">
+      <UniqueIdentifier>{1e59cd8b-cd4c-4e94-ae87-27a8d269b109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\App\ObjectIK">
+      <UniqueIdentifier>{e7489375-9eed-4c82-9af9-b9c581eb621e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="C2DCamera.h">
+      <Filter>소스 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="CVectorOperation.h">
+      <Filter>소스 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimer.h">
+      <Filter>소스 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>소스 파일\App</Filter>
+    </ClInclude>
+    <ClInclude Include="InverseKinematics2D.h">
+      <Filter>소스 파일\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>소스 파일\Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>소스 파일\Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="C2DObject.h">
+      <Filter>소스 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="C2DSimulator.h">
+      <Filter>소스 파일\App</Filter>
+    </ClInclude>
+    <ClInclude Include="C2DMesh.h">
+      <Filter>소스 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="C2DObjectIK.h">
+      <Filter>소스 파일\App\ObjectIK</Filter>
+    </ClInclude>
+    <ClInclude Include="C2DObjectBone.h">
+      <Filter>소스 파일\App\ObjectIK</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C2DCamera.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CVectorOperation.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimer.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="InverseKinematics2D.cpp">
+      <Filter>소스 파일\App</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일\App</Filter>
+    </ClCompile>
+    <ClCompile Include="C2DObject.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="C2DSimulator.cpp">
+      <Filter>소스 파일\App</Filter>
+    </ClCompile>
+    <ClCompile Include="C2DMesh.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="C2DObjectIK.cpp">
+      <Filter>소스 파일\App\ObjectIK</Filter>
+    </ClCompile>
+    <ClCompile Include="C2DObjectBone.cpp">
+      <Filter>소스 파일\App\ObjectIK</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="InverseKinematics2D.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="InverseKinematics2D.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
