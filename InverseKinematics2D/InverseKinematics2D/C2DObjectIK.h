@@ -16,9 +16,12 @@ public:
 
     void SetTargetPosition(const C2DVector& InTargetPosition) { TargetPosition = InTargetPosition; }
     const C2DVector& GetTargetPosition() const { return TargetPosition; }
+    void SetEndPoint(const C2DVector& InEndPoint) { EndPoint = InEndPoint; }
+    const C2DVector& GetEndPoint() { return EndPoint; }
 
 private:
     C2DVector TargetPosition;
+    C2DVector EndPoint;
     C2DObjectBone* RootBonePtr = nullptr;
 };
 

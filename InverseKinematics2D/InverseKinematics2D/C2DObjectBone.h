@@ -15,6 +15,9 @@ public:
     virtual void Update(float InElapsedTime) override;
 
 private:
+    void RotateToTarget(float InElapsedTime);
+
+private:
     C2DObjectIK* IKPtr = nullptr;
 };
 

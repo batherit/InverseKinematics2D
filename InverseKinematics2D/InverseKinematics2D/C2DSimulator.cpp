@@ -13,17 +13,14 @@ void C2DSimulator::Init(const HWND InhWnd)
 	Camera.GenerateProj(FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT);
 	Camera.GenerateScreen(0, 0, FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT);
 
-	ObjectList.push_back(std::make_shared<C2DObjectIK>());
+	ObjectIKPtr = std::make_shared<C2DObjectIK>();
 }
 
 void C2DSimulator::Update()
 {
 	Timer.Tick();
 
-	for (std::shared_ptr<C2DObject>& object : ObjectList)
-	{
-		object->Update(Timer.GetTimeElapsed());
-	}
+	ObjectIKPtr->Update(Timer.GetTimeElapsed());
 }
 
 void C2DSimulator::Render()
@@ -36,10 +33,11 @@ void C2DSimulator::Render()
 	HBITMAP hOldBitmap = (HBITMAP)SelectObject(hMemdc, hBitmap); // ºñÆ®¸Ê ¼±ÅÃ
 
 	::PatBlt(hMemdc, 0, 0, rect.right, rect.bottom, WHITENESS);
-	for (auto& object : ObjectList)
-	{
-		object->Render(hMemdc, Camera);
-	}
+	//for (auto& object : ObjectList)
+	//{
+	//	object->Render(hMemdc, Camera);
+	//}
+	ObjectIKPtr->Render(hMemdc, Camera);
 	::BitBlt(hdc, 0, 0, rect.right, rect.bottom, hMemdc, 0, 0, SRCCOPY);
 
 	DeleteObject(SelectObject(hMemdc, hOldBitmap));
@@ -83,6 +81,16 @@ void C2DSimulator::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM w
 			oldClicked.y = HIWORD(lParam);
 		}
 		break;
+	case WM_LBUTTONDOWN:
+	{
+		C2DVector curClickedPoint(static_cast<float>(LOWORD(lParam)), static_cast<float>(HIWORD(lParam)));
+		C2DMatrix mtxToWorld = Camera.GetToWorld();
+		CVectorOperation::C2DTransform(&curClickedPoint, &curClickedPoint, &mtxToWorld);
+		ObjectIKPtr->SetTargetPosition(curClickedPoint);
+		oldClicked.x = LOWORD(lParam);
+		oldClicked.y = HIWORD(lParam);
+		break;
+	}
 	case WM_RBUTTONUP:
 		oldClicked.x = 0;
 		oldClicked.y = 0;
@@ -111,6 +119,7 @@ LRESULT CALLBACK C2DSimulator::OnProcessingWindowMessage(HWND hWnd, UINT nMessag
 	case WM_RBUTTONDOWN:
 	case WM_RBUTTONUP:
 	case WM_MOUSEMOVE:
+	case WM_LBUTTONDOWN:
 		OnProcessingMouseMessage(hWnd, nMessageID, wParam, lParam);
 		break;
 	}

@@ -16,6 +16,13 @@ public:
 	void GenerateProj(float fWidth, float fHeight);
 	void GenerateScreen(float xStart, float yStart, float fWidth, float fHeight);
 
+	C2DMatrix GetToWorld()
+	{
+		C2DMatrix mtxToWorld = m_mtxView * m_mtxScale * m_mtxProj * m_mtxScreen;
+		CVectorOperation::C2DInverse(&mtxToWorld, &mtxToWorld);
+		return mtxToWorld;
+	}
+
 	void TransformView(C2DMatrix* outM, C2DMatrix* inM) const;
 	void TransformView(C2DVector* outV, C2DVector* inV) const;
 	void TransformScale(C2DMatrix* outM, C2DMatrix* inM) const;

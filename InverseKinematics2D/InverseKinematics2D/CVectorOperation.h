@@ -44,17 +44,17 @@ public:
 	void Set(const C2DVector& vector);
 	float GetX() const;
 	float GetY() const;
-	C2DVector GetXY(void);
+	C2DVector GetXY(void) const;
 
 	C2DVector& operator=(const C2DVector& v);
-	C2DVector operator-(C2DVector& v);
-	C2DVector operator-=(C2DVector& v);
+	C2DVector operator-(const C2DVector& v) const;
+	C2DVector operator-=(const C2DVector& v);
 	C2DVector operator+(const C2DVector& v) const;
-	C2DVector operator+=(C2DVector& v);
-	C2DVector operator*(float fS);
-	C2DVector operator*(C2DMatrix& m);
+	C2DVector operator+=(const C2DVector& v);
+	C2DVector operator*(float fS) const;
+	C2DVector operator*(const C2DMatrix& m) const;
 	C2DVector operator*=(float fS);
-	C2DVector operator/(float fS);
+	C2DVector operator/(float fS) const;
 };
 
 class C2DMatrix
@@ -70,6 +70,8 @@ public:
 
 	void Identify(void);
 	void Set(const C2DMatrix& matrix);
+
+	C2DMatrix operator*(const C2DMatrix& m) const;
 };
 
 class C3DVector

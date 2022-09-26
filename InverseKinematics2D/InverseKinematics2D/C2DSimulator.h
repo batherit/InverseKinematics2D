@@ -5,6 +5,7 @@
 #include "C2DCamera.h"
 
 class C2DObject;
+class C2DObjectIK;
 
 class C2DSimulator
 {
@@ -28,6 +29,6 @@ private:
 
 	CTimer Timer;
 	C2DCamera Camera;
-	std::vector<std::shared_ptr<C2DObject>> ObjectList;
+	std::shared_ptr<C2DObjectIK> ObjectIKPtr;
 };
 
