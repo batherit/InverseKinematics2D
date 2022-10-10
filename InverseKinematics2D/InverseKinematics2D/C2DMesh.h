@@ -27,3 +27,30 @@ public:
 private:
 	std::vector<C2DVector> PointList;
 };
+
+class C2DLine : public C2DLines
+{
+public:
+	C2DLine(const C2DVector& InStartPoint, const C2DVector& InEndPoint)
+		:
+		C2DLines({ InStartPoint, InEndPoint })
+	{}
+};
+
+class C2DBox : public C2DLines
+{
+	C2DBox(const C2DVector& InLeftTopPoint, const C2DVector& InRightBottomPoint)
+		:
+		C2DLines({ 
+			// left-top
+			InLeftTopPoint,
+			// right-top
+			C2DVector(InRightBottomPoint.m_fX, InLeftTopPoint.m_fY),
+			// right-bottom
+			InRightBottomPoint,
+			// left-bottom
+			C2DVector(InLeftTopPoint.m_fX, InRightBottomPoint.m_fY),
+			InLeftTopPoint
+		})
+	{}
+};

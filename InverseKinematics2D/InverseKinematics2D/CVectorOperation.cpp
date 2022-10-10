@@ -235,7 +235,7 @@ C2DVector& C2DVector::operator=(const C2DVector& v)
 	return *this;
 }
 
-C2DVector C2DVector::operator-(const C2DVector& v) const
+const C2DVector C2DVector::operator-(const C2DVector& v) const
 {
 	C2DVector vResult;
 
@@ -244,15 +244,14 @@ C2DVector C2DVector::operator-(const C2DVector& v) const
 	return vResult;
 }
 
-C2DVector C2DVector::operator-=(const C2DVector& v)
+C2DVector& C2DVector::operator-=(const C2DVector& v)
 {
-	C2DVector vResult;
+	m_fX -= v.m_fX;
+	m_fY -= v.m_fY;
 
-	vResult.Set(m_fX -= v.m_fX, m_fY -= v.m_fY);
-
-	return vResult;
+	return *this;
 }
-C2DVector C2DVector::operator+(const C2DVector& v) const
+const C2DVector C2DVector::operator+(const C2DVector& v) const
 {
 	C2DVector vResult;
 
@@ -262,16 +261,15 @@ C2DVector C2DVector::operator+(const C2DVector& v) const
 }
 
 
-C2DVector C2DVector::operator+=(const C2DVector& v)
+C2DVector& C2DVector::operator+=(const C2DVector& v)
 {
-	C2DVector vResult;
+	m_fX += v.m_fX;
+	m_fY += v.m_fY;
 
-	vResult.Set(m_fX += v.m_fX, m_fY += v.m_fY);
-
-	return vResult;
+	return *this;
 }
 
-C2DVector C2DVector::operator*(float fS) const
+const C2DVector C2DVector::operator*(float fS) const
 {
 	C2DVector vResult;
 
@@ -280,7 +278,7 @@ C2DVector C2DVector::operator*(float fS) const
 	return vResult;
 }
 
-C2DVector C2DVector::operator*(const C2DMatrix& m) const
+const C2DVector C2DVector::operator*(const C2DMatrix& m) const
 {
 	C2DVector vResult;
 
@@ -289,16 +287,15 @@ C2DVector C2DVector::operator*(const C2DMatrix& m) const
 	return vResult;
 }
 
-C2DVector C2DVector::operator*=(float fS)
+C2DVector& C2DVector::operator*=(float fS)
 {
-	C2DVector vResult;
+	m_fX *= fS; 
+	m_fY *= fS;
 
-	vResult.Set(m_fX *= fS, m_fY *= fS);
-
-	return vResult;
+	return *this;
 }
 
-C2DVector C2DVector::operator/(float fS) const
+const C2DVector C2DVector::operator/(float fS) const
 {
 	C2DVector vResult;
 
@@ -334,13 +331,25 @@ void C2DMatrix::Set(const C2DMatrix& matrix)
 	m_f31 = matrix.m_f31;	m_f32 = matrix.m_f32;	m_f33 = matrix.m_f33;
 }
 
-C2DMatrix C2DMatrix::operator*(const C2DMatrix& m) const
+C2DMatrix& C2DMatrix::operator=(const C2DMatrix& m)
+{
+	this->Set(m);
+
+	return *this;
+}
+
+const C2DMatrix C2DMatrix::operator*(const C2DMatrix& m) const
 {
 	C2DMatrix mtxResult;
 
 	CVectorOperation::C2DTransform(&mtxResult, this, &m);
 
 	return mtxResult;
+}
+
+C2DMatrix& C2DMatrix::operator*=(const C2DMatrix& m)
+{
+	return *this = (*this) * m;
 }
 
 C3DVector::C3DVector() : m_fX(0.0f), m_fY(0.0f), m_fZ(0.0f)
@@ -407,7 +416,7 @@ C3DVector& C3DVector::operator=(C3DVector& v)
 	return *this;
 }
 
-C3DVector C3DVector::operator-(C3DVector& v)
+const C3DVector C3DVector::operator-(C3DVector& v)
 {
 	C3DVector vResult;
 
@@ -416,7 +425,7 @@ C3DVector C3DVector::operator-(C3DVector& v)
 	return vResult;
 }
 
-C3DVector C3DVector::operator-=(C3DVector& v)
+C3DVector& C3DVector::operator-=(C3DVector& v)
 {
 	C3DVector vResult;
 
@@ -424,7 +433,7 @@ C3DVector C3DVector::operator-=(C3DVector& v)
 
 	return vResult;
 }
-C3DVector C3DVector::operator+(C3DVector& v)
+const C3DVector C3DVector::operator+(C3DVector& v)
 {
 	C3DVector vResult;
 
@@ -434,7 +443,7 @@ C3DVector C3DVector::operator+(C3DVector& v)
 }
 
 
-C3DVector C3DVector::operator+=(C3DVector& v)
+C3DVector& C3DVector::operator+=(C3DVector& v)
 {
 	C3DVector vResult;
 
@@ -443,7 +452,7 @@ C3DVector C3DVector::operator+=(C3DVector& v)
 	return vResult;
 }
 
-C3DVector C3DVector::operator*(float fS)
+const C3DVector C3DVector::operator*(float fS)
 {
 	C3DVector vResult;
 
@@ -461,7 +470,7 @@ C3DVector C3DVector::operator*(float fS)
 //	return vResult;
 //}
 
-C3DVector C3DVector::operator*=(float fS)
+C3DVector& C3DVector::operator*=(float fS)
 {
 	C3DVector vResult;
 
@@ -470,7 +479,7 @@ C3DVector C3DVector::operator*=(float fS)
 	return vResult;
 }
 
-C3DVector C3DVector::operator/(float fS)
+const C3DVector C3DVector::operator/(float fS)
 {
 	C3DVector vResult;
 

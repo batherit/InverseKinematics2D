@@ -25,6 +25,9 @@
     <Filter Include="소스 파일\App\ObjectIK">
       <UniqueIdentifier>{e7489375-9eed-4c82-9af9-b9c581eb621e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\App\SurroundSound">
+      <UniqueIdentifier>{c9183b0d-7a33-4ac2-b1b6-756f5029a38b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -60,9 +63,6 @@
     <ClInclude Include="C2DObject.h">
       <Filter>소스 파일\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="C2DSimulator.h">
-      <Filter>소스 파일\App</Filter>
-    </ClInclude>
     <ClInclude Include="C2DMesh.h">
       <Filter>소스 파일\Engine</Filter>
     </ClInclude>
@@ -70,6 +70,12 @@
       <Filter>소스 파일\App\ObjectIK</Filter>
     </ClInclude>
     <ClInclude Include="C2DObjectBone.h">
+      <Filter>소스 파일\App\ObjectIK</Filter>
+    </ClInclude>
+    <ClInclude Include="C2DSimulator.h">
+      <Filter>소스 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="CIK2DSimulator.h">
       <Filter>소스 파일\App\ObjectIK</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,9 +98,6 @@
     <ClCompile Include="C2DObject.cpp">
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="C2DSimulator.cpp">
-      <Filter>소스 파일\App</Filter>
-    </ClCompile>
     <ClCompile Include="C2DMesh.cpp">
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
@@ -102,6 +105,12 @@
       <Filter>소스 파일\App\ObjectIK</Filter>
     </ClCompile>
     <ClCompile Include="C2DObjectBone.cpp">
+      <Filter>소스 파일\App\ObjectIK</Filter>
+    </ClCompile>
+    <ClCompile Include="C2DSimulator.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CIK2DSimulator.cpp">
       <Filter>소스 파일\App\ObjectIK</Filter>
     </ClCompile>
   </ItemGroup>

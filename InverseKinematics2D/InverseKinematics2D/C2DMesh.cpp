@@ -7,13 +7,8 @@ void C2DLines::Render(HDC Inhdc, const C2DMatrix& InWorldMatrix, const C2DCamera
 	if (PointList.size() < 2)
 		return;
 
-	C2DMatrix mtxToScreen;
-	mtxToScreen.Set(InWorldMatrix);
-
-	InCamera.TransformView(&mtxToScreen, &mtxToScreen);
-	InCamera.TransformScale(&mtxToScreen, &mtxToScreen);
-	InCamera.TransformProj(&mtxToScreen, &mtxToScreen);
-	InCamera.TransformScreen(&mtxToScreen, &mtxToScreen);
+	C2DMatrix mtxToScreen(InWorldMatrix);
+	mtxToScreen *= InCamera.GetFromWorldToScreen();
 
 	C2DVector sPoint;
 	bool isFirstPoint = true;

@@ -4,7 +4,9 @@
 #include "stdafx.h"
 #include "framework.h"
 #include "InverseKinematics2D.h"
-#include "C2DSimulator.h"
+#include "CIK2DSimulator.h"
+#include "CTimer.h"
+#include <memory>
 
 #define MAX_LOADSTRING 100
 
@@ -13,9 +15,7 @@ HINSTANCE hInst;                                // 현재 인스턴스입니다.
 HWND hWnd;
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
-
-// 시뮬레이터
-C2DSimulator gIK_Simulator;
+std::weak_ptr<C2DSimulator> gSimulatorPtr;
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -47,7 +47,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_INVERSEKINEMATICS2D));
 
     MSG msg;
-
+    std::shared_ptr<C2DSimulator> simulatorPtr = std::make_shared<CIK2DSimulator>(hWnd);
+    gSimulatorPtr = simulatorPtr;
+    gSimulatorPtr.lock()->BuildEnvironment();
+    CTimer timer;
     while (1)
     {
         if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
@@ -62,8 +65,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             DispatchMessage(&msg);
         }
 
-        gIK_Simulator.Update();
-        gIK_Simulator.Render();
+        timer.Tick();
+        gSimulatorPtr.lock()->Update(timer.GetTimeElapsed());
+        gSimulatorPtr.lock()->Render();
     }
 
     return (int) msg.wParam;
@@ -120,8 +124,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
-   gIK_Simulator.Init(hWnd);
-
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
@@ -176,7 +178,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_KEYDOWN:
     case WM_KEYUP:
     case WM_MOUSEWHEEL:
-        gIK_Simulator.OnProcessingWindowMessage(hWnd, message, wParam, lParam);
+        if (!gSimulatorPtr.expired())
+        {
+            gSimulatorPtr.lock()->OnProcessingWindowMessage(hWnd, message, wParam, lParam);
+        }
         break;
     case WM_DESTROY:
         PostQuitMessage(0);

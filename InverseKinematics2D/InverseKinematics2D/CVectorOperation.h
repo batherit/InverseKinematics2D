@@ -47,14 +47,14 @@ public:
 	C2DVector GetXY(void) const;
 
 	C2DVector& operator=(const C2DVector& v);
-	C2DVector operator-(const C2DVector& v) const;
-	C2DVector operator-=(const C2DVector& v);
-	C2DVector operator+(const C2DVector& v) const;
-	C2DVector operator+=(const C2DVector& v);
-	C2DVector operator*(float fS) const;
-	C2DVector operator*(const C2DMatrix& m) const;
-	C2DVector operator*=(float fS);
-	C2DVector operator/(float fS) const;
+	const C2DVector operator-(const C2DVector& v) const;
+	C2DVector& operator-=(const C2DVector& v);
+	const C2DVector operator+(const C2DVector& v) const;
+	C2DVector& operator+=(const C2DVector& v);
+	const C2DVector operator*(float fS) const;
+	const C2DVector operator*(const C2DMatrix& m) const;
+	C2DVector& operator*=(float fS);
+	const C2DVector operator/(float fS) const;
 };
 
 class C2DMatrix
@@ -71,7 +71,9 @@ public:
 	void Identify(void);
 	void Set(const C2DMatrix& matrix);
 
-	C2DMatrix operator*(const C2DMatrix& m) const;
+	C2DMatrix& operator=(const C2DMatrix& m);
+	const C2DMatrix operator*(const C2DMatrix& m) const;
+	C2DMatrix& operator*=(const C2DMatrix& m);
 };
 
 class C3DVector
@@ -94,12 +96,12 @@ public:
 	C3DVector GetXYZ(void);
 
 	C3DVector& operator=(C3DVector& v);
-	C3DVector operator-(C3DVector& v);
-	C3DVector operator-=(C3DVector& v);
-	C3DVector operator+(C3DVector& v);
-	C3DVector operator+=(C3DVector& v);
-	C3DVector operator*(float fS);
+	const C3DVector operator-(C3DVector& v);
+	C3DVector& operator-=(C3DVector& v);
+	const C3DVector operator+(C3DVector& v);
+	C3DVector& operator+=(C3DVector& v);
+	const C3DVector operator*(float fS);
 	//C3DVector operator*(C3DMatrix& m);
-	C3DVector operator*=(float fS);
-	C3DVector operator/(float fS);
+	C3DVector& operator*=(float fS);
+	const C3DVector operator/(float fS);
 };

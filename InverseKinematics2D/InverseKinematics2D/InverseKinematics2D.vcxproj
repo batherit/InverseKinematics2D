@@ -157,6 +157,7 @@
     <ClInclude Include="CTimer.h" />
     <ClInclude Include="CVectorOperation.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="CIK2DSimulator.h" />
     <ClInclude Include="InverseKinematics2D.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Resource.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="C2DSimulator.cpp" />
     <ClCompile Include="CTimer.cpp" />
     <ClCompile Include="CVectorOperation.cpp" />
+    <ClCompile Include="CIK2DSimulator.cpp" />
     <ClCompile Include="InverseKinematics2D.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
